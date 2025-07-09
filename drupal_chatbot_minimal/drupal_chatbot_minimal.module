@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Chatbot minimalista para Drupal.
+ */
+
+/**
+ * Implementa hook_page_attachments().
+ */
+function drupal_chatbot_minimal_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'drupal_chatbot_minimal/chatbot';
+
+  // Cargar la API Key desde el archivo de configuración.
+  $settings_file = __DIR__ . '/drupal_chatbot_minimal.settings.local.php';
+  if (!file_exists($settings_file)) {
+    $settings_file = __DIR__ . '/drupal_chatbot_minimal.settings.php';
+  }
+  $config = file_exists($settings_file) ? include $settings_file : [];
+  $api_key = !empty($config['api_key']) ? $config['api_key'] : '';
+
+  $attachments['#attached']['drupalSettings']['drupal_chatbot_minimal'] = [
+    'apiKey' => $api_key,
+  ];
+} 

@@ -1,0 +1,7 @@
+name: "Chatbot Minimal"
+type: module
+description: "Chatbot minimalista que consume endpoint de Vicubo Cloud."
+core_version_requirement: ^10
+package: Custom
+libraries:
+  - drupal_chatbot_minimal/chatbot
